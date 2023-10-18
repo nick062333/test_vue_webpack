@@ -1,4 +1,44 @@
 const { defineConfig } = require('@vue/cli-service')
+
 module.exports = defineConfig({
   transpileDependencies: true
+  // configureWebpack: {
+  //   // 添加或修改 Webpack 配置
+  //   plugins: [
+  //     new VueLoaderPlugin()
+  //   ]
+  // },
+  // chainWebpack: (config) => {
+  //   // 添加一个自定义 Loader
+  //   config.module
+  //     .rule('vue')
+  //     .test(/\.vue$/)
+  //     .use()
+  //     .loader('vue-loader')
+  //     .end()
+
+  //     // 它会应用到普通的 `.js` 文件
+  //     // 以及 `.vue` 文件中的 `<script>` 块
+  //     .rule('script')
+  //     .test(/\.js$/)
+  //     .use()
+  //     .loader('babel-loader')
+  //     .end()
+
+  //     .rule('css')
+  //     .test(/\.css$/)
+  //     .use('css-loader')
+  //       .loader()
+  //       .options({
+  //         modules: true,
+  //         localIdentName:'[local]_[hash:base64:8]'
+  //       })
+
+  //       .end();
+
+  // },
+  // devServer: {
+  //   proxy: 'http://localhost',
+  //   port: 8080
+  // }
 })
