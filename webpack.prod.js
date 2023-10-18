@@ -7,5 +7,6 @@ module.exports = merge(common, {
     entry:{
         app: './src/index.js'
     },
-    devtool : "source-map"
+    devtool: false,
+
 });

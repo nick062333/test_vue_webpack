@@ -1,6 +1,8 @@
 // webpack.common.js
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const path = require('path');
 
 module.exports = {
@@ -22,6 +24,9 @@ module.exports = {
                 // publicPath: './dist/',
                 favicon:'./public/favicon.ico',
                 filename:'home.html'
+            }),
+        new MiniCssExtractPlugin({
+            filename:'style/[contenthash].css',
             })
     ],
     
@@ -41,7 +46,53 @@ module.exports = {
                 loader: 'file-loader',
               },
             ],
-          }
+          },
+            {
+                test: /\.m?js$/,
+
+                //排除已下Module
+                exclude: /(node_modules|bower_components)/,
+
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime']
+                    }
+                }
+            },
+            {
+                test: /\.vue\.(s?[ac]ss)$/,
+                oneOf: [
+                  // 这里匹配 `<style module>`
+                  {
+                    resourceQuery: /module/,
+                    use: [
+                      'vue-style-loader',
+                      {
+                        loader: 'css-loader',
+                        options: {
+                          modules: {
+                              localIdentName: '[local]_[hash:base64:5]'
+                          },
+                        }
+                      }
+                    ]
+                  },
+                  // 这里匹配普通的 `<style>` 或 `<style scoped>`
+                  {
+                    use: [
+                      'vue-style-loader',
+                      'css-loader'
+                    ]
+                  }
+                ]
+            },
+            // SASS and CSS files (standalone):
+            {
+                test: /(?<!\.vue)\.(s?[ac]ss)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            }
        ]
    }
 }

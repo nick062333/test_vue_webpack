@@ -1,4 +1,7 @@
-<style>
+<style module>
+    div{
+        background-color:rgb(199, 124, 32);
+    }
 </style>
 
 <template>
@@ -13,6 +16,7 @@
 export default {
     data(){
         return {
+            msg: '我要的顏色呢!!!!!!!!!'
         }
     }
 }

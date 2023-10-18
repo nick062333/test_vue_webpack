@@ -2,12 +2,6 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true
-  // configureWebpack: {
-  //   // 添加或修改 Webpack 配置
-  //   plugins: [
-  //     new VueLoaderPlugin()
-  //   ]
-  // },
   // chainWebpack: (config) => {
   //   // 添加一个自定义 Loader
   //   config.module
