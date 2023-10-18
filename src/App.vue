@@ -4,6 +4,8 @@
 <template>
     <div id="app">
         <h1> {{ msg }} </h1>
+
+        <img src="./assets/logo.png" />
     </div>
 </template>
 
@@ -11,7 +13,6 @@
 export default {
     data(){
         return {
-            msg : "Halloween"
         }
     }
 }

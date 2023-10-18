@@ -1,6 +1,6 @@
 // webpack.dev.js
 
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, { // 合併 webpack.common.js 的設定
