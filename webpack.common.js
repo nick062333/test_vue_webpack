@@ -3,7 +3,17 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const webpack = require('webpack')
 const path = require('path');
+
+const dotenv = require('dotenv')
+
+//parsed包含包含加載內容的鍵或error失敗時的鍵
+const env = dotenv.config({ path:'../.env'}).parsed
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next])
+  return prev
+}, {})
 
 module.exports = {
 //   context: path.resolve(__dirname, ''),
@@ -27,7 +37,8 @@ module.exports = {
             }),
         new MiniCssExtractPlugin({
             filename:'style/[contenthash].css',
-            })
+            }),
+        new webpack.DefinePlugin(envKeys)
     ],
     
    // ...
@@ -68,7 +79,9 @@ module.exports = {
                   {
                     resourceQuery: /module/,
                     use: [
-                      'vue-style-loader',
+                        process.env.NODE_ENV !== 'production'
+                        ? 'vue-style-loader'
+                        : MiniCssExtractPlugin.loader,
                       {
                         loader: 'css-loader',
                         options: {

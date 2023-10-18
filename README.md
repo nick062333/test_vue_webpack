@@ -69,3 +69,11 @@ npm i vue-style-loader
 npm i css-loader
 npm i mini-css-extract-plugin
 ```
+
+
+
+### webpack use env file
+
+```
+npm i dotenv
+```
